@@ -11,9 +11,5 @@ public class Main {
         }else {
             System.out.println("Invalid game mode passed.");
         }
-
-        //for dummy push
-        //Six Dummy Push Giggity
-        //five dummy push kappa
     }
 }
