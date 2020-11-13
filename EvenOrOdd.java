@@ -1,4 +1,5 @@
 public class EvenOrOdd extends Game {
+    // rashed made this
     public EvenOrOdd(String mode) {
         super(mode);
     }
