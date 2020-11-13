@@ -3,6 +3,7 @@ public class EvenOrOdd extends Game {
     public EvenOrOdd(String mode) {
         super(mode);
     }
+    // hi
     public void playerMode() {
         System.out.println("Player Mode");
     }
