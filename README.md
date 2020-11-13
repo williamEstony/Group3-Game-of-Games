@@ -13,10 +13,10 @@ Step-by-step directions indicating how the code for your program (variations) ca
 
 ## Responsibilities Document
 
-Rashed Alshamsi:
-Will Estony:
-Ryan Gress:
-Lewis Nikuze:
+* Rashed Alshamsi:
+* Will Estony:
+* Ryan Gress:
+* Lewis Nikuze:
 
 ## Meeting Notes
 
