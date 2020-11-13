@@ -13,6 +13,7 @@ public class Main {
         }
 
         //for dummy push
+        //Six Dummy Push Giggity
         //five dummy push kappa
     }
 }
