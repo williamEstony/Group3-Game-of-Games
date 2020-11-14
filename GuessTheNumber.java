@@ -1,45 +1,25 @@
 import java.util.*;
 
 public class GuessTheNumber extends Game{
-    static int rangeNum;
-    static int numGuesses;
-    static int secretNum;
-    static String mode;
+    private static int rangeNum;
+    private static int numGuesses;
+    private static int secretNum;
+    private static final String PLAYER = "player";
+    private static final String TEST = "test";
+    private static final String BUG = "bug";
+    private static final int DISPLAY_TIME = 10*1000;
 
     public GuessTheNumber(String mode) {
         super(mode);
     }
 
-    public void playerMode(){
-        mode= "player";
-        System.out.println();
-        System.out.println("Player Mode");
-        System.out.println();
-        playGame(mode);
-    }
-
-    public void testMode(){
-        mode = "test";
-        System.out.println();
-        System.out.println("Test Mode");
-        System.out.println();
-        playGame(mode);
-    }
-
-    public void bugMode(){
-        mode = "bug";
-        System.out.println();
-        System.out.println("Bug Mode");
-        System.out.println();
-        playGame(mode);
-    }
-    
+    //Playing the game according to the selected mode
     private static void playGame(String mode){
         rangeNum = getRangeNum();
         numGuesses = getNumGuesses(rangeNum);
         secretNum = secretNum(rangeNum);
 
-        if (mode.equals("test"))
+        if (mode.equals(TEST))
          System.out.println("The secret number is " + secretNum);
 
         while(numGuesses>0){
@@ -49,8 +29,8 @@ public class GuessTheNumber extends Game{
             numGuesses--;
         }
        
-        //The seeded bug that increment the number of remaining guesses
-        if(mode.equals("bug"))
+        //The seeded bug that increments the number of remaining guesses
+        if(mode.equals(BUG))
            numGuesses++;
 
         if(numGuesses == 0)
@@ -59,24 +39,28 @@ public class GuessTheNumber extends Game{
         else
             System.out.println("You(P1) won!! The secret number was " + secretNum );
         
-        sleepDisplay(10);
+        sleepDisplay(DISPLAY_TIME);
     }
 
+    //The guesser enters their guess
     private static int guess(){
         System.out.print("Enter your guess: ");
         return getInputInt();  
     }
 
+    //The selectore selectes a number to be guessed
     private static int secretNum(int rangeNum){
         Random rand = new Random(); 
         return rand.nextInt(rangeNum + 1); 
     }
 
+    //Getting the range number
     private static int getRangeNum(){
         System.out.print("Enter the range number: ");
         return getInputInt();
     }
 
+    //Getting the number of guesses
     private static int getNumGuesses(int rangeNum){
         System.out.print("Enter the number of guesses: ");
         int x = getInputInt();
@@ -87,30 +71,54 @@ public class GuessTheNumber extends Game{
         return x;
     }
 
+    //Getting integer input from console
     private static int getInputInt(){
-        Scanner in = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         int inputNum = Integer.MAX_VALUE;
      
         while(true){
             try{
-                inputNum = Integer.parseInt(in.nextLine());
+                inputNum = Integer.parseInt(input.nextLine());
                 break;
             }catch(Exception e){
                 System.out.print("Please enter an integer: ");
                 continue;
             }
         }
-
         return inputNum;
     }
 
+    //Runnig the game in player mode
+    public void playerMode(){
+        System.out.println();
+        System.out.println("Player Mode");
+        System.out.println();
+        playGame(PLAYER);
+    }
+
+    //Running the game in test mode
+    public void testMode(){
+        System.out.println();
+        System.out.println("Test Mode");
+        System.out.println();
+        playGame(TEST);
+    }
+
+    //Running the game in bug mode
+    public void bugMode(){
+        System.out.println();
+        System.out.println("Bug Mode");
+        System.out.println();
+        playGame(BUG);
+    }
+    
+    //Sleeping the thread for a number of seconds
     private static void sleepDisplay(int numSeconds){
         try{
-            Thread.sleep(numSeconds*1000);
+            Thread.sleep(numSeconds);
 
         }catch(InterruptedException e){
             e.printStackTrace();
-
         }
     }
 }
