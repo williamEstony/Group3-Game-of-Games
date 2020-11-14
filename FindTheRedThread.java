@@ -1,6 +1,6 @@
 public class FindTheRedThread extends Game{
     public FindTheRedThread(String mode) {
-        super(mode);
+        super("Find the Red Thread", mode);
     }
     public void playerMode() {
         System.out.println("Player Mode");

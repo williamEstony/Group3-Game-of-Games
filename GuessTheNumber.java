@@ -1,6 +1,6 @@
 public class GuessTheNumber extends Game{
     public GuessTheNumber(String mode) {
-        super(mode);
+        super("Guess the Number", mode);
     }
 
     public void playerMode() {
