@@ -1,7 +1,9 @@
 public class EvenOrOdd extends Game {
+    // rashed made this
     public EvenOrOdd(String mode) {
-        super(mode);
+        super("Even and Odd", mode);
     }
+    // hi
     public void playerMode() {
         System.out.println("Player Mode");
     }

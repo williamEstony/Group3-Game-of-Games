@@ -1,6 +1,6 @@
 public class FindTheThimble extends Game{
     public FindTheThimble(String mode) {
-        super(mode);
+        super("Find the Thimble", mode);
     }
     
     public void playerMode() {
