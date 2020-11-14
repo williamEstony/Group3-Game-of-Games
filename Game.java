@@ -5,24 +5,22 @@ public abstract class Game extends MenuObject {
     private static final int SCOREBOARD_DISPLAY_TIME = 10;
     protected int computerScore;
     protected int userScore;
+    protected static final String PLAYER = "player";
+    protected static final String TEST = "test";
+    protected static final String BUG = "bug";
+    protected GetInput getInput;
 
     public Game(String name, String mode) {
         super(name, mode);
         this.computerScore = 0;
         this.userScore = 0;
+        this.getInput = new GetInput();
     }
-    public abstract void playerMode();
-    public abstract void testMode();
-    public abstract void bugMode();
+    public abstract void playGame(String mode);
 
     public void execute() {
-        System.out.println(super.getName());
-        if (super.getMode().equals("player")) {
-            playerMode();
-        }else if(super.getMode().equals("test")) {
-            testMode();
-        }else if(super.getMode().equals("bug")) {
-            bugMode();
+        if (super.getMode().equals(PLAYER) || super.getMode().equals(TEST) || super.getMode().equals(BUG)) {
+            playGame(super.getMode());
         }else {
             System.out.println("Invalid game mode detected");
         }

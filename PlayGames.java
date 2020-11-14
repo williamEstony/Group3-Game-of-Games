@@ -24,7 +24,7 @@ public class PlayGames {
             System.out.print("Input a character to choose a game: ");
             String gameCode = input.getInput();
         
-            while(!input.isGameCode(gameCode)) {
+            while(!input.isValidGameCode(gameCode)) {
                 clearMenu();
                 menu.displayMenu();
                 System.out.print("Please enter a valid Menu Code: ");

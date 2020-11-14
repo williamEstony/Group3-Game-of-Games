@@ -3,14 +3,8 @@ public class EvenOrOdd extends Game {
     public EvenOrOdd(String mode) {
         super("Even and Odd", mode);
     }
-    // hi
-    public void playerMode() {
-        System.out.println("Player Mode");
-    }
-    public void testMode() {
-        System.out.println("Test Mode");
-    }
-    public void bugMode() {
-        System.out.println("Bug Mode");
+
+    public void playGame(String mode) {
+
     }
 }

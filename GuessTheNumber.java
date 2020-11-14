@@ -4,34 +4,12 @@ public class GuessTheNumber extends Game{
     private int rangeNum;
     private int numGuesses;
     private int secretNum;
-    private static final String PLAYER = "player";
-    private static final String TEST = "test";
-    private static final String BUG = "bug";
-
     public GuessTheNumber(String mode) {
         super("Guess the Number", mode);
     }
-
-    //Runnig the game in player mode
-    public void playerMode(){
-        System.out.println();
-        playGame(PLAYER);
-    }
-
-    //Running the game in test mode
-    public void testMode(){
-        System.out.println();
-        playGame(TEST);
-    }
-
-    //Running the game in bug mode
-    public void bugMode(){
-        System.out.println();
-        playGame(BUG);
-    }    
-
+    
     //Playing the game according to the selected mode
-    private void playGame(String mode){
+    public void playGame(String mode){
         rangeNum = getRangeNum();
         numGuesses = getNumGuesses(rangeNum);
         secretNum = secretNum(rangeNum);
