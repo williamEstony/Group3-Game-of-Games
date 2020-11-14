@@ -5,6 +5,7 @@ public class Menu {
     }
     public void displayGames() {
         System.out.println("Please choose a game.");
-        Game CoinFlip = new CoinFlip(this.mode);
+        //Game coinFlip = new CoinFlip(this.mode);
+        Game guessTheNummber = new GuessTheNumber(mode);
     }
 }

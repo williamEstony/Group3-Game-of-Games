@@ -6,7 +6,7 @@ public class Main {
             System.out.println("Invalid game mode passed.");
         }else if(args.length == 1) {
             menu = new Menu(args[0]);
-            System.out.println("Welcome to the Game of Games!");
+            System.out.println("Welcome to the Game of Games!");    
             menu.displayGames();
         }else {
             System.out.println("Invalid game mode passed.");
