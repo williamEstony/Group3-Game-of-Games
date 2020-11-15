@@ -4,14 +4,17 @@ public class GuessTheNumber extends Game{
     private int rangeNum;
     private int numGuesses;
     private int secretNum;
+    private GetInput input;
+
     public GuessTheNumber(String mode) {
         super("Guess the Number", mode);
+        this.input= new GetInput();
     }
     
     //Playing the game according to the selected mode
     public void playGame(String mode){
         rangeNum = getRangeNum();
-        numGuesses = getNumGuesses(rangeNum);
+        numGuesses = input.getValidNumGuesses(rangeNum);
         secretNum = secretNum(rangeNum);
 
         if (mode.equals(TEST))
@@ -43,7 +46,7 @@ public class GuessTheNumber extends Game{
     //The guesser enters their guess
     private int guess(){
         System.out.print("Enter your guess: ");
-        return getInputInt();  
+        return input.getIntegerInput();  
     }
 
     //The selectore selectes a number to be guessed
@@ -55,41 +58,14 @@ public class GuessTheNumber extends Game{
     //Getting the range number
     private int getRangeNum(){
         System.out.print("Enter the range number: ");
-        return getInputInt();
-    }
-
-    //Getting the number of guesses
-    private int getNumGuesses(int rangeNum){
-        System.out.print("Enter the number of guesses: ");
-        int x = getInputInt();
-        while(x > (rangeNum/2)){
-            System.out.print("Please enter an integer less than or equal to " + rangeNum/2 + ": ");
-            x = getInputInt();
-        }
-        return x;
-    }
-
-    //Getting integer input from console
-    private int getInputInt(){
-        Scanner input = new Scanner(System.in);
-        int inputNum = Integer.MAX_VALUE;
-     
-        while(true){
-            try{
-                inputNum = Integer.parseInt(input.nextLine());
-                break;
-            }catch(Exception e){
-                System.out.print("Please enter an integer: ");
-                continue;
-            }
-        }
-        return inputNum;
+        return input.getIntegerInput();
     }
 }
 
 
 /* Questions to group 2
-Is the computer the guesser or the selector? Always
+Can I assume that the guesser is always the user?
 No need to confirm if the guess is in the range?
 Range is 0 to n? Should we reject n < 1
+How about even and odd values of n?
 */
