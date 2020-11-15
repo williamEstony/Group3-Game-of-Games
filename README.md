@@ -23,3 +23,4 @@ Step-by-step directions indicating how the code for your program (variations) ca
 * Preliminary Meeting from 1 - 2:30 PM on Friday, November 13, 2020 (Whole Group)
 * Git tutorial from 4 - 4:30 PM on Friday, November 13, 2020 (Will and Rashed)
 * Second meeting with group from 5 - 6 PM on Saturday, November 14, 2020 (Whole Group)
+* Third team meeting with group from 1 - 2 PM on Sunday, November 15, 2020 (Whole Group)
