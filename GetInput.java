@@ -16,6 +16,12 @@ public class GetInput {
         }
     }
 
+    public boolean isValidThisOrThatValue(String choice, String[] choices) {
+        for(String s: choices) {
+            
+        }
+    }
+
     public boolean isValidBestOfNum(String s) {
         if(isInteger(s)) {
             if(Integer.parseInt(s) > 0 && Integer.parseInt(s) % 2 == 1) {
