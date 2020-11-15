@@ -38,6 +38,30 @@ public class GetInput {
         return true;
     }
 
+    //Prompt the user until they enter a valid number of guesses
+    public int getValidNumGuesses(int rangeNum){
+        System.out.print("Enter the number of guesses: ");
+        int numGuesses = getIntegerInput();
+
+        while(numGuesses > (rangeNum/2)){
+            System.out.print("Please enter an integer less than or equal to " + rangeNum/2 + ": ");
+            numGuesses = getIntegerInput();
+        }
+        return numGuesses;
+    }
+
+    //Promp the user until they enter an integer
+    public int getIntegerInput(){
+        String inputString = getInput();
+
+        while(!isInteger(inputString)){
+            System.out.print("Please enter an integer: ");
+            inputString = getInput();
+        }
+
+        return Integer.parseInt(inputString);
+    }
+
     private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
