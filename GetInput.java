@@ -29,9 +29,34 @@ public class GetInput {
     }
 
     public boolean isValidThreadPull(String s) {
-        return true;
+      if(isInteger(s)) {
+          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= 10) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
     }
-
+    public boolean isValidThread(String s) {
+      if(isInteger(s)) {
+          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= 20) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
+    }
+    public boolean isValidThreadNum(int s) {
+          if(s > 0 && s <= 20) {
+              return true;
+          } else {
+              return false;
+          }
+      }
     //Prompt the user until they enter a valid number of guesses
     public int getValidNumGuesses(int rangeNum){
         System.out.print("Enter the number of guesses: ");
