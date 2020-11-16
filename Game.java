@@ -35,13 +35,11 @@ public abstract class Game extends MenuObject {
         this.getInput = new GetInput();
     }
 
-    
     /**
      * Calls each Games individual playGame method with the corresponding mode specified.
      * When a game is over, the scoreboard is displayed for 10 seconds.
      */
     public void execute() {
-        
         playGame(mode);
         displayScoreboard();
         wait(SCOREBOARD_DISPLAY_TIME);

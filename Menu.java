@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  * One of the more interesting classes for the Game of Games. Defines how the menu
  * looks and behaves. Implemented with a LinkedHashMap. We prefer LinkedHashMap as opposed
- * to regular HashMap because Linked ensures the order items are placed in it the data structure is preserved.
+ * to regular HashMap because Linked ensures the order items are placed into the data structure is preserved.
  * Another interesting thing we've done here is made all the methods static.
  * This allows us to not have to instantiate a Menu object. We believe this to be a cleaner approach.
  */
