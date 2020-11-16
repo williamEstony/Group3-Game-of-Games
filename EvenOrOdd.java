@@ -33,17 +33,17 @@ public class EvenOrOdd extends Game {
 
         // Randomly assign the user even or odd for every game in the series [assumption]
         String evenOrOddAssignment = evenOrOddMapping[(int)Math.round(Math.random())];
-        
+
 
         if(evenOrOddAssignment.equals(EVEN)) {
             System.out.println("I will be " + ODD + ", ");
         } else {
-            System.out.println("I will be " + EVEN + ", "); 
+            System.out.println("I will be " + EVEN + ", ");
         }
 
         System.out.println("You will be " + evenOrOddAssignment + ".");
 
-        //Keep playing individual even or odd games until a player wins the majority of the 
+        //Keep playing individual even or odd games until a player wins the majority of the
         //games in the series.
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
 
@@ -71,7 +71,7 @@ public class EvenOrOdd extends Game {
             System.out.println("I threw: " + computerThrow);
 
             System.out.println("The sum of the throws is: " + (userThrow + computerThrow));
-            
+
             if(userThrow + computerThrow % 2 == 0) {
                 if(mode.equals(BUG)) {
                     if (evenOrOddAssignment.equals(EVEN)) {
@@ -129,4 +129,4 @@ public class EvenOrOdd extends Game {
             }
         }
     }
-}＀
+}

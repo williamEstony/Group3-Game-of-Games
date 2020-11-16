@@ -6,9 +6,10 @@ public class FindTheRedThread extends Game{
   private static final int removedThread = -1;
   private static int randInt = 0;
   private static int numGuesses = 0;
-  private static String pullsPerTurn;
   private static int Thread = 0;
+  private static String pullsPerTurn;
   private static Random rand = new Random();
+
   public FindTheRedThread(String mode) {
       super("Find the Red Thread", mode);
   }
@@ -16,7 +17,7 @@ public class FindTheRedThread extends Game{
   public void playGame(String mode) {
     boolean isWinner = false;
     numGuesses = 0;
-    int n = 0;
+    int numOfPulls = 0;
     int[] boxOfThreads = new int[upperBound];
     int[] playerPulls = new int[upperBound];
     int[] computerPulls = new int[upperBound];
@@ -30,7 +31,7 @@ public class FindTheRedThread extends Game{
     System.out.println("Please Enter the Number of Threads to be Pulled: ");
     pullsPerTurn = getInput.getInput();
     if(getInput.isValidThreadPull(pullsPerTurn, upperBound)) {
-      n = Integer.parseInt(pullsPerTurn);
+      numOfPulls = Integer.parseInt(pullsPerTurn);
     }
     else{
       while(!getInput.isValidThreadPull(pullsPerTurn, upperBound)){
@@ -38,23 +39,23 @@ public class FindTheRedThread extends Game{
         System.out.println("Please Enter a Valid Number of Threads to be Pulled: ");
         pullsPerTurn = getInput.getInput();
       }
-      n = Integer.parseInt(pullsPerTurn);
+      numOfPulls = Integer.parseInt(pullsPerTurn);
     }
 
     if (mode.equals(TEST) || mode.equals(BUG)){
-      System.out.println("Number of Threads to be Pulled = " + n);
+      System.out.println("Number of Threads to be Pulled = " + numOfPulls);
     }
 
-    while(numGuesses + n <= upperBound && !isWinner){
+    while(numGuesses + numOfPulls <= upperBound && !isWinner){
       isWinner = winCheck(playerPulls, computerPulls);
       if(!isWinner){
         System.out.println("No Winner Yet!");
         System.out.println("Your Turn");
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < numOfPulls; i++){
           pullThreads(i, boxOfThreads, playerPulls);
         }
         System.out.println("Computer's Turn");
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < numOfPulls; i++){
           computerPullThreads(i, boxOfThreads, computerPulls);
         }
       }
