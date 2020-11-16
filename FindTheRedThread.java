@@ -1,4 +1,10 @@
 import java.util.Random;
+/**
+ * The following class models the game - Find the Red Thread.
+ * It inherits from parent class Game and grandparent class MenuObject
+ * @see Game
+ * @see MenuObject
+ */
 public class FindTheRedThread extends Game{
   private static final int upperBound = 21;
   private static final int redThread = 1;
@@ -10,10 +16,23 @@ public class FindTheRedThread extends Game{
   private static String pullsPerTurn;
   private static Random rand = new Random();
 
+   /**
+    * Constructor method for Find the Red Thread.
+    * Passes the name of the game, and mode of the game to parent class Game.
+    * @param mode - the mode of the Game of Games we are playing represented as a String
+    *               Could be: test, bug or player
+    */
   public FindTheRedThread(String mode) {
       super("Find the Red Thread", mode);
   }
 
+  /**
+   * Single driver method for the Find the Red Thread game that must be implemented by virtue of the contract with
+   * parent class Game.
+   * Requests user input for the number of threads that should be pulled each turn
+   * @param mode - the mode of the Game of Games we are playing represented as a String
+   *               Could be: test, bug or player
+   */
   public void playGame(String mode) {
     boolean isWinner = false;
     numGuesses = 0;
@@ -61,7 +80,6 @@ public class FindTheRedThread extends Game{
       }
     }
 
-
     if(!isWinner){
       isWinner = winCheck(playerPulls, computerPulls);
       if(numGuesses % 2 == 0){
@@ -86,10 +104,19 @@ public class FindTheRedThread extends Game{
     }
   }
 
+  /**
+   * Print method for any inputs that are deemed invalid.
+   */
   public void invalidInput(){
     System.out.println("Invalid Input Detected!");
   }
-
+  /**
+   * Method to populate the array that represents the box of threads
+   * @param boxOfThreads - the array that contains the numbers representing the threads
+   *                       that would be present in the box
+   * @param mode - the mode of the Game of Games we are playing represented as a String
+   *               Could be: test, bug or player
+   */
   public void populateArray(int[] boxOfThreads, String mode){
     for(int i = 0; i < upperBound; i++){
         boxOfThreads[i] = otherThread;
@@ -100,6 +127,14 @@ public class FindTheRedThread extends Game{
     }
   }
 
+  /**
+   * Method to ask the user for the thread they wish to pull and adds the thread to the player's array
+   * @param numberOfPull - an integer representing the number of the current thread pull
+   * @param boxOfThreads - the array that contains the numbers representing the threads
+   *                       that would be present in the box
+   * @param playerPulls - the array that contains the numbers representing the threads
+   *                      that the player has pulled
+   */
   public void pullThreads(int numberOfPull, int[] boxOfThreads, int[] playerPulls){
       String threadPull;
       System.out.println("Please Enter Thread to be Pulled: ");
@@ -120,6 +155,14 @@ public class FindTheRedThread extends Game{
       numGuesses++;
   }
 
+  /**
+   * Method to have the computer randomly pull the thread for their turn and adds the thread to the computer's array
+   * @param numberOfPull - an integer representing the number of the current thread pull
+   * @param boxOfThreads - the array that contains the numbers representing the threads
+   *                       that would be present in the box
+   * @param computerPulls - the array that contains the numbers representing the threads
+   *                        that the computer has pulled
+   */
   public void computerPullThreads(int numberOfPull, int[] boxOfThreads, int[] computerPulls){
     int random = rand.nextInt(upperBound);
     while(!getInput.isValidThreadNum(random, upperBound) || boxOfThreads[random] == removedThread){
@@ -130,7 +173,13 @@ public class FindTheRedThread extends Game{
     boxOfThreads[random] = removedThread;
     numGuesses++;
   }
-
+  /**
+   * A method to check if either the computer or the player have pulled the red thread.
+   * @param playerPulls - the array that contains the numbers representing the threads
+   *                      that the player has pulled
+   * @param computerPulls - the array that contains the numbers representing the threads
+   *                        that the computer has pulled
+   */
   public boolean winCheck(int[] playerPulls, int[] computerPulls){
     for(int i = 0; i < upperBound; i++){
       if(playerPulls[i] == redThread){

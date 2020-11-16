@@ -66,7 +66,7 @@ public class EvenOrOdd extends Game {
 
             int computerThrow = (int)(Math.random() * range) + 1;
 
-            // In bug and test mode. The user will see be able 
+            // In bug and test mode. The user will see be able to see the computer throw 
             if(mode.equals(TEST) || mode.equals(BUG)) {
                 System.out.println("I am going to throw: " + computerThrow);
             }
@@ -79,6 +79,7 @@ public class EvenOrOdd extends Game {
                 userThrow = getInput.getIntegerInput();
             }
 
+            // In bug mode. computer Throw get incremented 
             if(mode.equals(BUG) && computerThrow != range) {
                 computerThrow++;
             } else if(mode.equals(BUG)) {
@@ -91,6 +92,8 @@ public class EvenOrOdd extends Game {
             System.out.println("The sum of the throws is: " + (userThrow + computerThrow));
             
             if(userThrow + computerThrow % 2 == 0) {
+
+                //In bug mode. The win will not go to the winner.
                 if(mode.equals(BUG)) {
                     if (evenOrOddAssignment.equals(EVEN)) {
                         System.out.println("I win game " + game);
@@ -109,6 +112,8 @@ public class EvenOrOdd extends Game {
                     }
                 }
             } else {
+
+                //In bug mode. The win will not go to the winner.
                 if(mode.equals(BUG)) {
                     if (evenOrOddAssignment.equals(ODD)) {
                         System.out.println("I win game " + game);
@@ -129,6 +134,8 @@ public class EvenOrOdd extends Game {
             }
             game++;
         }
+
+        //In bug mode. it bugs the game.
         if(mode.equals(BUG)) {
             if(computerScore > userScore) {
                 System.out.println("You win the series!");
