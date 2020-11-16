@@ -16,16 +16,19 @@ public class GetInput {
         }
     }
 
-    public boolean isValidBestOfNum(String s) {
-        if(isInteger(s)) {
-            if(Integer.parseInt(s) > 0 && Integer.parseInt(s) % 2 == 1) {
-                return true;
-            } else {
-                return false;
-            }
+    public boolean isValidBestOfNum(int i) {
+        if(i > 0 && i % 2 == 1) {
+            return true;
         } else {
             return false;
         }
+    }
+
+    public boolean isValidAOrBValue(String input, String a, String b) {
+        if(input.equals(a) || input.equals(b)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isValidThreadPull(String s) {
