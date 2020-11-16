@@ -108,7 +108,7 @@ public class FindTheRedThread extends Game{
       int upperBound = 20;
       Random rand = new Random();
       int randInt = rand.nextInt(upperBound);
-      while(!getInput.isValidThreadNum(randInt) || intArray[randInt] == -1){
+      while(!getInput.isValidThreadNum(randInt, upperBound) || intArray[randInt] == -1){
         randInt = rand.nextInt(upperBound);
       }
       System.out.println("Computer Pulled: " + randInt);

@@ -53,8 +53,8 @@ public class GetInput {
           return false;
       }
     }
-    public boolean isValidThreadNum(int s) {
-          if(s > 0 && s <= 20) {
+    public boolean isValidThreadNum(int i, int upperBound) {
+          if(i > 0 && i <= upperBound) {
               return true;
           } else {
               return false;
@@ -64,6 +64,11 @@ public class GetInput {
     public int getValidNumGuesses(int rangeNum){
         System.out.print("Enter the number of guesses: ");
         int numGuesses = getIntegerInput();
+
+        if(rangeNum < 2 && numGuesses > 1){
+            System.out.println("Setting the number of guesses equal to 1");
+            return 1;
+        }
 
         while(numGuesses > (rangeNum/2)){
             System.out.print("Please enter an integer less than or equal to " + rangeNum/2 + ": ");
