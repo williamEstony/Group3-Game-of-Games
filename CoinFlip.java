@@ -1,8 +1,8 @@
 public class CoinFlip extends Game{
 
-    public static final String heads = "H";
-    public static final String tails = "T";
-    public static final String[] flips = {heads, tails};
+    public static final String HEADS = "H";
+    public static final String TAILS = "T";
+    public static final String[] flips = {HEADS, TAILS};
 
     public CoinFlip(String mode) {
         super("Coin Flip", mode);
@@ -35,7 +35,7 @@ public class CoinFlip extends Game{
 
             String choice = getInput.getInput();
 
-            while(!getInput.isValidAOrBValue(choice, heads, tails)) {
+            while(!getInput.isValidAOrBValue(choice, HEADS, TAILS)) {
                 System.out.print("Enter H for heads or T for tails: ");
                 choice = getInput.getInput();
             }

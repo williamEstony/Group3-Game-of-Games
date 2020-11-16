@@ -1,8 +1,12 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class FindTheThimble extends Game{
 
-    public static final String heads = "H";
-    public static final String tails = "T";
-    public static final String[] flips = {heads, tails};
+    private static final String LEFT = "L";
+    private static final String RIGHT = "R";
+    private static final String[] flips = {LEFT, RIGHT};
+    private static final Map<String, String> map = new HashMap<String, String>() {{ put(LEFT, "left hand"); put(RIGHT, "right hand");}};
 
     public FindTheThimble(String mode) {
         super("Find the Thimble", mode);
@@ -28,15 +32,15 @@ public class FindTheThimble extends Game{
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
             int flip = (int)Math.round(Math.random());
             if(mode.equals(TEST) || mode.equals(BUG)) {
-                System.out.println("The coin landed on " + flips[flip]);
+                System.out.println("The thimble is in " + flips[flip]);
             }
 
-            System.out.print("Enter H for heads or T for tails: ");
+            System.out.print("Enter L for left hand or R for right hand: ");
 
             String choice = getInput.getInput();
 
-            while(!getInput.isValidAOrBValue(choice, heads, tails)) {
-                System.out.print("Enter H for heads or T for tails: ");
+            while(!getInput.isValidAOrBValue(choice, LEFT, RIGHT)) {
+                System.out.print("Enter L for left hand or R for right hand: ");
                 choice = getInput.getInput();
             }
 
