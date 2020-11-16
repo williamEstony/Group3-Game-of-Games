@@ -1,7 +1,9 @@
-import java.util.*;
-
-
-//Class for playing Guess the Number
+/**
+ * The following class models the game - Guess the Number
+ * It inherits from parent class Game and grandparent class MenuObject 
+ * @see Game
+ * @see MenuObject
+ */
 public class GuessTheNumber extends Game{
     private int rangeNum;
     private int numGuesses;
@@ -9,15 +11,25 @@ public class GuessTheNumber extends Game{
     private int guess;
     private GetInput input;
 
+    /**
+     * Constructor method for Guess the Number
+     * Passes the name of the game, and mode of the game to parent class Game.
+     * @param mode - the mode of the Game of Games we are playing represented as a String
+     *               Could be: test, bug or player
+     */
     public GuessTheNumber(String mode) {
         super("Guess the Number", mode);
         this.input= new GetInput();
     }
     
-    //Playing the game according to the selected mode
+    /**
+     * Single driver method for guess the number game that must be implemented by virtue of the contract with
+     * parent class Game.
+     * Requests user input for both range and their guess
+     * Determines if they won the game and increments the user or computer's score accordingly.
+     */
     public void playGame(String mode) {
         rangeNum = getRangeNum();
-
 
         System.out.print("Enter the number of guesses: ");
         numGuesses = input.getIntegerInput();
@@ -42,8 +54,7 @@ public class GuessTheNumber extends Game{
             numGuesses++;
         }
 
-        //check if the guesser still has guesses
-        //Guess as many times as allowed
+        //Check if the guesser still has guesses. Guess as many times as allowed.
         do {
             guess = guess(); 
             numGuesses--;
@@ -69,20 +80,25 @@ public class GuessTheNumber extends Game{
         }
     }
 
-    //Get a guess from the user
+    /**
+     * @return a guess as to what the secret number is made by the user
+     */
     private int guess(){
         System.out.print("Enter your guess: ");
         return input.getIntegerInput();  
     }
 
-    //The selector selects a number to be guessed
-    //Selecting the secret number
+    /**
+     * @return the secret number the user must guess. Computed by calculating a random number
+     * within the user specified range.
+     */
     private int secretNum(int rangeNum){
-        Random rand = new Random(); 
-        return rand.nextInt(rangeNum + 1); 
+        return (int)(Math.random() * rangeNum + 1);
     }
 
-    //Getting the range number
+    /**
+     * @return the range number, provided by the user.
+     */
     private int getRangeNum(){
         System.out.print("Enter the range number: ");
         return input.getIntegerInput();
