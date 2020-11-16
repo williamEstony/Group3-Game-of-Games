@@ -41,22 +41,38 @@ public class GetInput {
         }
         return false;
     }
-
-    public boolean isValidNumThreadPullsPerRound(int numThreadPulls, int threadBoxSize) {
-        if(numThreadPulls > 0 && numThreadPulls <= threadBoxSize / 2) {
-            return true;
+    public boolean isValidThreadPull(String s, int upperBound) {
+      if(isInteger(s)) {
+          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= (upperBound / 2)) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
         }
-        return false;
+      }
+    public boolean isValidThread(String s, int upperBound) {
+      if(isInteger(s)) {
+          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= upperBound) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
     }
 
-    public boolean isValidThreadPull(int threadIndex, int threadBoxSize) {
-        if(threadIndex > 0 && threadIndex <= threadBoxSize) {
-            return true;
-        }
-        return false;
-    }
-    
-    
+    public boolean isValidThreadNum(int i, int upperBound) {
+          if(i > 0 && i <= upperBound) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+
+
     public boolean isValidNumGuesses(int numGuesses, int rangeNum){
         if(numGuesses <= (rangeNum / 2)) {
             return true;

@@ -1,117 +1,149 @@
+import java.util.Random;
 public class FindTheRedThread extends Game{
-    
-    private static final int THREAD_BOX_SIZE = 20;
+  private static final int upperBound = 21;
+  private static final int redThread = 1;
+  private static final int otherThread = 0;
+  private static final int removedThread = -1;
+  private static int randInt = 0;
+  private static int numGuesses = 0;
+  private static String pullsPerTurn;
+  private static int Thread = 0;
+  private static Random rand = new Random();
+  public FindTheRedThread(String mode) {
+      super("Find the Red Thread", mode);
+  }
 
-    private static final int NOBODY = 0;
-    private static final int USER = 1;
-    private static final int COMPUTER = 2;
+  public void playGame(String mode) {
+    boolean isWinner = false;
+    numGuesses = 0;
+    int n = 0;
+    int[] boxOfThreads = new int[upperBound];
+    int[] playerPulls = new int[upperBound];
+    int[] computerPulls = new int[upperBound];
 
-    private static final int THREAD_SLOT_CHECKED = -1;
+    populateArray(boxOfThreads, mode);
 
-    private static final int THREAD = 1;
-    private int winner;
-
-    private int threadsPulled = 0;
-    private int[] threadBox = new int[THREAD_BOX_SIZE];
-    
-    public FindTheRedThread(String mode) {
-        super("Find the Red Thread", mode);
+    if(mode.equals(TEST) || mode.equals(BUG)){
+      System.out.println("The Red Thread is in slot " + (randInt));
     }
 
-    public void playGame(String mode) {
-      winner = NOBODY;
-      initializeThreadBox();
-      System.out.println("Please enter the number of threads to be pulled each round: ");
-      
-      int threadPullsPerRound = getInput.getIntegerInput();
-      
-      while(!getInput.isValidNumThreadPullsPerRound(threadPullsPerRound, THREAD_BOX_SIZE)){
-        System.out.println("Invalid thread pulls per round number entered.");
-        System.out.println("Please enter a valid number of threads to be pulled each round: ");
-        threadPullsPerRound = getInput.getIntegerInput();
+    System.out.println("Please Enter the Number of Threads to be Pulled: ");
+    pullsPerTurn = getInput.getInput();
+    if(getInput.isValidThreadPull(pullsPerTurn, upperBound)) {
+      n = Integer.parseInt(pullsPerTurn);
+    }
+    else{
+      while(!getInput.isValidThreadPull(pullsPerTurn, upperBound)){
+        invalidInput();
+        System.out.println("Please Enter a Valid Number of Threads to be Pulled: ");
+        pullsPerTurn = getInput.getInput();
       }
-
-      if (mode.equals(TEST) || mode.equals(BUG)){
-        System.out.println("The number of threads that each player will pull per round is " + threadPullsPerRound);
-      }
-
-      while(threadsPulled + threadPullsPerRound <= THREAD_BOX_SIZE && winner == NOBODY){
-
-        // User pulls threads from box 
-        for(int i = 1; i <= threadPullsPerRound; i++){
-          System.out.println("Your Pull: " + i + "/" + threadPullsPerRound);
-          pullThreads(USER);
-        }
-        
-        // Computer pulls threads from box
-        for(int i = 1; i <= threadPullsPerRound; i++){
-          System.out.println("Computer's Pull: " + i + "/" + threadPullsPerRound);
-          pullThreads(COMPUTER);
-        }
-      }   
-      
-      //There aren't enough threads left in the box for each player to grab, so the computer pulls the
-      //remaining threads.
-      if(THREAD_BOX_SIZE - threadsPulled > 0 && winner == NOBODY) {
-        for(int i = 0; i < THREAD_BOX_SIZE - threadsPulled; i++){
-          System.out.println("Computer is pulling the remaining threads.");
-          pullThreads(COMPUTER);
-        }
-      }
+      n = Integer.parseInt(pullsPerTurn);
     }
 
-    private void initializeThreadBox() {
-      int redThreadIndex = (int)(Math.random() * THREAD_BOX_SIZE);
+    if (mode.equals(TEST) || mode.equals(BUG)){
+      System.out.println("Number of Threads to be Pulled = " + n);
+    }
 
-      for(int i = 0; i < THREAD_BOX_SIZE; i++){
-          threadBox[i] = 0;
-      }
-      if(!mode.equals(BUG)) {
-        threadBox[redThreadIndex] = 1;
+    while(numGuesses + n <= upperBound && !isWinner){
+      isWinner = winCheck(playerPulls, computerPulls);
+      if(!isWinner){
+        System.out.println("No Winner Yet!");
+        System.out.println("Your Turn");
+        for(int i = 0; i < n; i++){
+          pullThreads(i, boxOfThreads, playerPulls);
+        }
+        System.out.println("Computer's Turn");
+        for(int i = 0; i < n; i++){
+          computerPullThreads(i, boxOfThreads, computerPulls);
+        }
       }
     }
 
-    public void pullThreads(int turn) {
-      int threadIndex = 0;
-      if(turn == USER){
-        System.out.println("Please enter a thread slot to be pulled: ");
-        threadIndex = getInput.getIntegerInput();
-        
-        while(!getInput.isValidThreadPull(threadIndex, THREAD_BOX_SIZE) || threadBox[threadIndex - 1] == THREAD_SLOT_CHECKED){
-          System.out.println("Invalid thread pull entered");
-          System.out.println("Please enter a valid thread slot: ");
-          threadIndex = getInput.getIntegerInput();
-        }
 
-        threadIndex--;
-        
-        if(threadBox[threadIndex] == THREAD) {
-          winner = USER;
-          if(mode.equals(BUG)) {
-            incrementComputerScore();
-          } else {
-            incrementUserScore();
-          }
+    if(!isWinner){
+      isWinner = winCheck(playerPulls, computerPulls);
+      if(numGuesses % 2 == 0){
+        System.out.println("Your Final Turn");
+        for(int i = 0; i < (upperBound - numGuesses); i++){
+          pullThreads(i, boxOfThreads, playerPulls);
         }
-      }else if(turn == COMPUTER) {
-        threadIndex = (int)(Math.random() * THREAD_BOX_SIZE);
-        while(threadBox[threadIndex] == THREAD_SLOT_CHECKED){
-          threadIndex = (int)(Math.random() * THREAD_BOX_SIZE);
-        }
-        System.out.println("Computer Pulled: " + (threadIndex + 1));
-        
-        if(threadBox[threadIndex] == THREAD) {
-          winner = COMPUTER;
-          if(mode.equals(BUG)) {
-            incrementUserScore();
-          } else {
-            incrementComputerScore();
+      }
+      else{
+        if(!mode.equals(BUG)){
+          System.out.println("Computer's Final Turn");
+          for(int i = 0; i < upperBound - numGuesses; i++){
+            computerPullThreads(i, boxOfThreads, playerPulls);
           }
         }
       }
-      if(!mode.equals(BUG)) {
-        threadBox[threadIndex] = THREAD_SLOT_CHECKED;
+      if(!isWinner){
+        if(!mode.equals(BUG)){
+          isWinner = winCheck(playerPulls, computerPulls);
+        }
       }
-      threadsPulled++;
-  }      
+    }
+  }
+
+  public void invalidInput(){
+    System.out.println("Invalid Input Detected!");
+  }
+
+  public void populateArray(int[] boxOfThreads, String mode){
+    for(int i = 0; i < upperBound; i++){
+        boxOfThreads[i] = otherThread;
+    }
+    randInt = rand.nextInt(upperBound);
+    if(!mode.equals(BUG)){
+      boxOfThreads[randInt] = redThread;
+    }
+  }
+
+  public void pullThreads(int numberOfPull, int[] boxOfThreads, int[] playerPulls){
+      String threadPull;
+      System.out.println("Please Enter Thread to be Pulled: ");
+      threadPull = getInput.getInput();
+      if(getInput.isValidThread(threadPull, upperBound) && boxOfThreads[Integer.parseInt(threadPull)] != removedThread) {
+        Thread = Integer.parseInt(threadPull);
+      }
+      else{
+        while(!getInput.isValidThread(threadPull, upperBound) || boxOfThreads[Integer.parseInt(threadPull)] == removedThread){
+          invalidInput();
+          System.out.println("Please Enter a Valid Thread to be Pulled: ");
+          threadPull = getInput.getInput();
+        }
+        Thread = Integer.parseInt(threadPull);
+      }
+      playerPulls[numberOfPull] = boxOfThreads[Thread];
+      boxOfThreads[Thread] = removedThread;
+      numGuesses++;
+  }
+
+  public void computerPullThreads(int numberOfPull, int[] boxOfThreads, int[] computerPulls){
+    int random = rand.nextInt(upperBound);
+    while(!getInput.isValidThreadNum(random, upperBound) || boxOfThreads[random] == removedThread){
+      random = rand.nextInt(upperBound);
+    }
+    System.out.println("Computer Pulled: " + random);
+    computerPulls[numberOfPull] = boxOfThreads[random];
+    boxOfThreads[random] = removedThread;
+    numGuesses++;
+  }
+
+  public boolean winCheck(int[] playerPulls, int[] computerPulls){
+    for(int i = 0; i < upperBound; i++){
+      if(playerPulls[i] == redThread){
+        System.out.println("Player Wins! The Red Thread Was in Slot " + (randInt));
+        incrementUserScore();
+        return true;
+      }
+      else if(computerPulls[i] == redThread){
+        System.out.println("Computer Wins! The Red Thread Was in Slot " + (randInt));
+        incrementComputerScore();
+        return true;
+      }
+    }
+    return false;
+
+  }
 }
