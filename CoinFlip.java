@@ -1,8 +1,16 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class CoinFlip extends Game{
 
-    public static final String HEADS = "H";
-    public static final String TAILS = "T";
-    public static final String[] flips = {HEADS, TAILS};
+    private static final String HEADS = "H";
+    private static final String TAILS = "T";
+    private static final String[] flips = {HEADS, TAILS};
+    private static final Map<String, String> map = new HashMap<String, String>()
+    {{ 
+       put(HEADS, "heads"); 
+       put(TAILS, "tails");
+    }};
 
     public CoinFlip(String mode) {
         super("Coin Flip", mode);
@@ -28,7 +36,7 @@ public class CoinFlip extends Game{
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
             int flip = (int)Math.round(Math.random());
             if(mode.equals(TEST) || mode.equals(BUG)) {
-                System.out.println("The coin landed on " + flips[flip]);
+                System.out.println("The coin landed on " + map.get(flips[flip]));
             }
 
             System.out.print("Enter H for heads or T for tails: ");
@@ -40,7 +48,7 @@ public class CoinFlip extends Game{
                 choice = getInput.getInput();
             }
 
-            System.out.println("The result of the flip was: " + flips[flip]);
+            System.out.println("The result of the flip was " + map.get(flips[flip]));
             if(mode.equals(BUG)) {
                 if(choice.equals(flips[flip])) {
                     computerScore++;

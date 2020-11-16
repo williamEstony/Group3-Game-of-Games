@@ -6,7 +6,11 @@ public class FindTheThimble extends Game{
     private static final String LEFT = "L";
     private static final String RIGHT = "R";
     private static final String[] flips = {LEFT, RIGHT};
-    private static final Map<String, String> map = new HashMap<String, String>() {{ put(LEFT, "left hand"); put(RIGHT, "right hand");}};
+    private static final Map<String, String> map = new HashMap<String, String>()
+    {{ 
+       put(LEFT, "left hand"); 
+       put(RIGHT, "right hand");
+    }};
 
     public FindTheThimble(String mode) {
         super("Find the Thimble", mode);
@@ -32,19 +36,20 @@ public class FindTheThimble extends Game{
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
             int flip = (int)Math.round(Math.random());
             if(mode.equals(TEST) || mode.equals(BUG)) {
-                System.out.println("The thimble is in " + flips[flip]);
+                System.out.println("The thimble is in my " + map.get(flips[flip]));
             }
 
-            System.out.print("Enter L for left hand or R for right hand: ");
+            System.out.println("Which hand am I hiding the thimble in?");
+            System.out.print("Enter L to guess left hand or R to guess right hand: ");
 
             String choice = getInput.getInput();
 
             while(!getInput.isValidAOrBValue(choice, LEFT, RIGHT)) {
-                System.out.print("Enter L for left hand or R for right hand: ");
+                System.out.print("Enter L to guess left hand or R to guess right hand: ");
                 choice = getInput.getInput();
             }
 
-            System.out.println("The result of the flip was: " + flips[flip]);
+            System.out.println("The thimble was in my " + map.get(flips[flip]));
             if(mode.equals(BUG)) {
                 if(choice.equals(flips[flip])) {
                     computerScore++;
@@ -78,7 +83,7 @@ public class FindTheThimble extends Game{
                 System.out.println("Computer Wins the Series!");
                 incrementComputerScore();
             }else {
-                System.out.println("You Wins the Series!");
+                System.out.println("You Win the Series!");
                 incrementUserScore();
             }
         }

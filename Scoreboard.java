@@ -42,16 +42,16 @@ public class Scoreboard extends Menu{
         }
         if(userTotalScore > computerTotalScore) {
             System.out.println("You have won the game of games!");
-            System.out.println("Your score: " + userTotalScore);
-            System.out.println("Computer's score: " + computerTotalScore);
+            System.out.println("Your total number of games won: " + userTotalScore);
+            System.out.println("Computer's total number of games won: " + computerTotalScore);
         }else if(computerTotalScore > userTotalScore) {
             System.out.println("The computer has won the game of games!");
-            System.out.println("Your score: " + userTotalScore);
-            System.out.println("Computer's score: " + computerTotalScore);
+            System.out.println("Your total number of games won: " + userTotalScore);
+            System.out.println("Computer's total number of games won: " + computerTotalScore);
         }else {
             System.out.println("The game of games has ended in a tie!");
-            System.out.println("Your score: " + userTotalScore);
-            System.out.println("Computer's score: " + computerTotalScore);
+            System.out.println("Your total number of games won: " + userTotalScore);
+            System.out.println("Computer's total number of games won: " + computerTotalScore);
         }
     }
 }
