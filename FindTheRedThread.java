@@ -104,11 +104,11 @@ public class FindTheRedThread extends Game{
       String threadPull;
       System.out.println("Please Enter Thread to be Pulled: ");
       threadPull = getInput.getInput();
-      if(getInput.isValidThread(threadPull, upperBound) && boxOfThreads[Integer.parseInt(threadPull)] != removedThread) {
+      if(getInput.isValidThread(threadPull, upperBound - 1) && boxOfThreads[Integer.parseInt(threadPull)] != removedThread) {
         Thread = Integer.parseInt(threadPull);
       }
       else{
-        while(!getInput.isValidThread(threadPull, upperBound) || boxOfThreads[Integer.parseInt(threadPull)] == removedThread){
+        while(!getInput.isValidThread(threadPull, upperBound - 1) || boxOfThreads[Integer.parseInt(threadPull)] == removedThread){
           invalidInput();
           System.out.println("Please Enter a Valid Thread to be Pulled: ");
           threadPull = getInput.getInput();
