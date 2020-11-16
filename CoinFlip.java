@@ -1,21 +1,43 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The following class models the game - Coin Flip.
+ * Fundamentally it is the same as Find the Thimble.
+ * It inherits from parent class Game and grandparent class MenuObject 
+ * @see Find the Thimble
+ * @see Game
+ * @see MenuObject
+ */
 public class CoinFlip extends Game{
 
     private static final String HEADS = "H";
     private static final String TAILS = "T";
     private static final String[] flips = {HEADS, TAILS};
+
+    //Maps user input for heads/tails to their String literals
     private Map<String, String> map = new HashMap<String, String>()
     {{ 
        put(HEADS, "heads"); 
        put(TAILS, "tails");
     }};
 
+    /**
+     * Constructor method for Coin Flip.
+     * Passes the name of the game, and mode of the game to parent class Game.
+     * @param mode - the mode of the Game of Games we are playing represented as a String
+     *               Could be: test, bug or player
+     */
     public CoinFlip(String mode) {
         super("Coin Flip", mode);
     }
-    //Playing the game according to the selected mode
+
+    /**
+     * Single driver method for coin flip game that must be implemented by virtue of the contract with
+     * parent class Game.
+     * Requests user input for both their "guess" and their "best out of number."
+     * Determines if they won the game and increments the user or computer's score accordingly.
+     */
     public void playGame(String mode){
         System.out.print("Enter a best of number: ");
         int bestOfNum = getInput.getIntegerInput();
@@ -33,6 +55,8 @@ public class CoinFlip extends Game{
         int computerScore = 0;
         int game = 1;
 
+        //Keep playing individual coin flip games until a player wins a majority of the 
+        //games in the series.
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
             int flip = (int)Math.round(Math.random());
             if(mode.equals(TEST) || mode.equals(BUG)) {
@@ -71,18 +95,18 @@ public class CoinFlip extends Game{
 
         if(mode.equals(BUG)) {
             if(computerScore > userScore) {
-                System.out.println("You Wins the Series!");
+                System.out.println("You win the series!");
                 incrementUserScore();
             } else {
-                System.out.println("Computer Wins the Series!");
+                System.out.println("Computer wins the series!");
                 incrementComputerScore();
             }
         } else {
             if(computerScore > userScore) {
-                System.out.println("Computer Wins the Series!");
+                System.out.println("Computer wins the series!");
                 incrementComputerScore();
             } else {
-                System.out.println("You Wins the Series!");
+                System.out.println("You win the series!");
                 incrementUserScore();
             }
         }
