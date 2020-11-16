@@ -1,3 +1,10 @@
+/**
+ * The following class models the game - EvenOrOdd.
+ * It inherits from parent class Game and grandparent class MenuObject 
+ * @see Game
+ * @see MenuObject
+ */
+
 public class EvenOrOdd extends Game {
 
     private static final int MAX_FINGERS = 5;
@@ -5,13 +12,19 @@ public class EvenOrOdd extends Game {
     private static final String ODD = "odd";
     private static final String[] evenOrOddMapping = {EVEN, ODD};
 
+    /**
+     * Constructor method for Coin EvenOrOdd.
+     * Passes the name of the game, and mode of the game to parent class Game.
+     * @param mode - the mode of the Game of Games we are playing represented as a String
+     *               Could be: test, bug or player
+     */
     public EvenOrOdd(String mode) {
         super("Even and Odd", mode);
     }
 
     public void playGame(String mode) {
 
-        int userScore = 0;
+        int userScore = 0;  
         int computerScore = 0;
         int game = 1;
 
@@ -23,6 +36,10 @@ public class EvenOrOdd extends Game {
             range = getInput.getIntegerInput();
         }
 
+        /**
+         * Requests user input for both their "guess" and their "best out of number."
+         * Determines if they won the game and increments the user or computer's score accordingly.
+         */
         System.out.print("Enter a best of number: ");
         int bestOfNum = getInput.getIntegerInput();
 
@@ -33,22 +50,23 @@ public class EvenOrOdd extends Game {
 
         // Randomly assign the user even or odd for every game in the series [assumption]
         String evenOrOddAssignment = evenOrOddMapping[(int)Math.round(Math.random())];
-
+        
 
         if(evenOrOddAssignment.equals(EVEN)) {
             System.out.println("I will be " + ODD + ", ");
         } else {
-            System.out.println("I will be " + EVEN + ", ");
+            System.out.println("I will be " + EVEN + ", "); 
         }
 
         System.out.println("You will be " + evenOrOddAssignment + ".");
 
-        //Keep playing individual even or odd games until a player wins the majority of the
+        //Keep playing individual even or odd games until a player wins the majority of the 
         //games in the series.
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
 
             int computerThrow = (int)(Math.random() * range) + 1;
 
+            // In bug and test mode. The user will see be able 
             if(mode.equals(TEST) || mode.equals(BUG)) {
                 System.out.println("I am going to throw: " + computerThrow);
             }
@@ -71,7 +89,7 @@ public class EvenOrOdd extends Game {
             System.out.println("I threw: " + computerThrow);
 
             System.out.println("The sum of the throws is: " + (userThrow + computerThrow));
-
+            
             if(userThrow + computerThrow % 2 == 0) {
                 if(mode.equals(BUG)) {
                     if (evenOrOddAssignment.equals(EVEN)) {

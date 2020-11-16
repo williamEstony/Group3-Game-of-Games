@@ -13,7 +13,8 @@ Step-by-step directions indicating how the code for your program (variations) ca
 
 ## Responsibilities Document
 
-* Rashed Alshamsi:
+* Rashed Alshamsi: I worked on the EvenOrOdd class and wrote some methods in the GetInput class.  I wrote the UML diagram, methods glossary, data configuration table and unit tests for EvenOrOdd.
+
 * Will Estony:
 * Ryan Gress:
 * Lewis Nikuze:
