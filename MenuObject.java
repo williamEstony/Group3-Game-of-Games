@@ -11,6 +11,6 @@ public abstract class MenuObject {
     public abstract void execute();
     public String getName() { return name; }
     public String getMode() { return mode; }
-    public Scoreboard getScoreboard() { return scoreboard; }
-    public static boolean getPlayAgain() { return scoreboard.getPlayAgain(); }
+    
+    public static Scoreboard getScoreboard() { return scoreboard; }
 }

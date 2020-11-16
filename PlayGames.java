@@ -3,30 +3,29 @@ import java.lang.InterruptedException;
 
 public class PlayGames {
 
-    private String mode;
-    private static Menu menu;
-    private GetInput input;
     private MenuObject menuObject;
+    private GetInput input;
+    private Scoreboard scoreboard;
 
     
 
     public PlayGames(String mode) {
-        this.mode = mode;
         this.input = new GetInput();
-        menu = new Menu(mode);
+        this.scoreboard = MenuObject.getScoreboard();
+        Menu.initializeMenu(mode);
 
         System.out.println("Welcome to the Game of Games");
     }
 
     public void start() {
-        while(MenuObject.getPlayAgain()) {
-            menu.displayMenu();
+        while(scoreboard.getPlayAgain()){
+            Menu.displayMenu();
             System.out.print("Input a character to choose a game: ");
             String gameCode = input.getInput();
         
             while(!input.isValidGameCode(gameCode)) {
                 clearMenu();
-                menu.displayMenu();
+                Menu.displayMenu();
                 System.out.print("Please enter a valid Menu Code: ");
                 gameCode = input.getInput();
             }
@@ -34,7 +33,7 @@ public class PlayGames {
             menuObject.execute();
             clearMenu();
         }
-        System.out.println("Player [insert some logic here] Won!");
+        scoreboard.displayOverallWinner();
     }
 
     private static void clearMenu(){
@@ -57,8 +56,6 @@ public class PlayGames {
                 }
             }
 
-        }catch(Exception e) {
-
-        }
+        }catch(Exception e) {}
     }
 }
