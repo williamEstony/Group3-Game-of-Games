@@ -49,21 +49,12 @@ public class GetInput {
         return false;
     }
     
-    //Prompt the user until they enter a valid number of guesses
-    public int getValidNumGuesses(int rangeNum){
-        System.out.print("Enter the number of guesses: ");
-        int numGuesses = getIntegerInput();
-
-        if(rangeNum < 2 && numGuesses > 1){
-            System.out.println("Setting the number of guesses equal to 1");
-            return 1;
+    
+    public boolean isValidNumGuesses(int numGuesses, int rangeNum){
+        if(numGuesses <= (rangeNum / 2)) {
+            return true;
         }
-
-        while(numGuesses > (rangeNum/2)){
-            System.out.print("Please enter an integer less than or equal to " + rangeNum/2 + ": ");
-            numGuesses = getIntegerInput();
-        }
-        return numGuesses;
+        return false;
     }
 
     //Promp the user until they enter an integer

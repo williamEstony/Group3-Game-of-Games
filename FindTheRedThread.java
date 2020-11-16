@@ -6,6 +6,8 @@ public class FindTheRedThread extends Game{
     private static final int USER = 1;
     private static final int COMPUTER = 2;
 
+    private static final int THREAD_SLOT_CHECKED = -1;
+
     private static final int THREAD = 1;
     private int winner;
 
@@ -75,7 +77,7 @@ public class FindTheRedThread extends Game{
         System.out.println("Please enter a thread slot to be pulled: ");
         threadIndex = getInput.getIntegerInput();
         
-        while(!getInput.isValidThreadPull(threadIndex, THREAD_BOX_SIZE) || threadBox[threadIndex - 1] == -1){
+        while(!getInput.isValidThreadPull(threadIndex, THREAD_BOX_SIZE) || threadBox[threadIndex - 1] == THREAD_SLOT_CHECKED){
           System.out.println("Invalid thread pull entered");
           System.out.println("Please enter a valid thread slot: ");
           threadIndex = getInput.getIntegerInput();
@@ -93,7 +95,7 @@ public class FindTheRedThread extends Game{
         }
       }else if(turn == COMPUTER) {
         threadIndex = (int)(Math.random() * THREAD_BOX_SIZE);
-        while(threadBox[threadIndex] == -1){
+        while(threadBox[threadIndex] == THREAD_SLOT_CHECKED){
           threadIndex = (int)(Math.random() * THREAD_BOX_SIZE);
         }
         System.out.println("Computer Pulled: " + (threadIndex + 1));
@@ -107,7 +109,9 @@ public class FindTheRedThread extends Game{
           }
         }
       }
-      threadBox[threadIndex] = -1;
+      if(!mode.equals(BUG)) {
+        threadBox[threadIndex] = THREAD_SLOT_CHECKED;
+      }
       threadsPulled++;
   }      
 }

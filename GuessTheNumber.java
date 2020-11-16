@@ -6,6 +6,7 @@ public class GuessTheNumber extends Game{
     private int rangeNum;
     private int numGuesses;
     private int secretNum;
+    private int guess;
     private GetInput input;
 
     public GuessTheNumber(String mode) {
@@ -16,7 +17,18 @@ public class GuessTheNumber extends Game{
     //Playing the game according to the selected mode
     public void playGame(String mode) {
         rangeNum = getRangeNum();
-        numGuesses = input.getValidNumGuesses(rangeNum);
+
+
+        System.out.print("Enter the number of guesses: ");
+        numGuesses = input.getIntegerInput();
+        
+        //Prompt the user until they enter a valid number of guesses
+        while(!getInput.isValidNumGuesses(numGuesses, rangeNum)){
+            System.out.print("Please enter an integer less than or equal to " + (rangeNum/2) + ": ");
+            numGuesses = getInput.getIntegerInput();
+        }
+
+
         secretNum = secretNum(rangeNum);
 
         if (mode.equals(TEST) || mode.equals(BUG)) {
@@ -32,14 +44,11 @@ public class GuessTheNumber extends Game{
 
         //check if the guesser still has guesses
         //Guess as many times as allowed
-        while(numGuesses > 0){
-            int guess = guess(); 
-            if (guess==secretNum) {
-                break;
-            }
+        do {
+            guess = guess(); 
             numGuesses--;
-        }
-
+        }while(numGuesses > 0 && guess != secretNum);
+        
         if(numGuesses == 0) {
             System.out.println("Computer won!! The secret number was " + secretNum );
 
