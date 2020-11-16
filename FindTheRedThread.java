@@ -1,33 +1,32 @@
 import java.util.Random;
 public class FindTheRedThread extends Game{
+    private static final int upperBound = 21;
+    private static int randInt = 0;
     public FindTheRedThread(String mode) {
         super("Find the Red Thread", mode);
     }
     public void playGame(String mode) {
       Random rand = new Random();
-      int upperBound = 20;
       int n = 0;
       int t = 0;
       int fill = 0;
-      int[] intArray = new int[20];
-      int[] playerArray = new int[20];
-      int[] computerArray = new int[20];
+      int[] intArray = new int[upperBound];
+      int[] playerArray = new int[upperBound];
+      int[] computerArray = new int[upperBound];
       String number;
       String Thread;
       boolean isWinner = false;
-      int randInt = rand.nextInt(upperBound);
+      randInt = rand.nextInt(upperBound);
       if (mode.equals(TEST)){
-        System.out.println("The Red Thread is in slot " + randInt);
+        System.out.println("The Red Thread is in slot " + (randInt - 1));
       }
-      for(int i = 0; i < 20; i++){
+      for(int i = 0; i < upperBound; i++){
           intArray[i] = 0;
       }
-      intArray[randInt - 1] = 1;
-      if (mode.equals(TEST)){
-        for(int i = 0; i < 20; i++){
-            System.out.println(i + 1 + " " + intArray[i]);
-        }
+      if(!mode.equals(BUG)){
+        intArray[randInt - 1] = 1;
       }
+
       System.out.println("Please Enter the Number of Threads to be Pulled: ");
       number = getInput.getInput();
       if(getInput.isValidThreadPull(number)) {
@@ -45,7 +44,7 @@ public class FindTheRedThread extends Game{
         System.out.println("Number of Threads to be Pulled = " + n);
       }
 
-      while(fill + n <= 20 && !isWinner){
+      while(fill + n <= upperBound && !isWinner){
         isWinner = winCheck(playerArray, computerArray);
         if(!isWinner){
           System.out.println("No Winner Yet!");
@@ -62,23 +61,21 @@ public class FindTheRedThread extends Game{
 
       if(!isWinner){
         if(fill % 2 == 0){
-          for(int i = 0; i < 20 - fill; i++){
+          for(int i = 0; i < upperBound - fill; i++){
             System.out.println("Your Final Turn");
             pullThreads(i, intArray, playerArray, fill);
           }
         }
         else{
-          for(int i = 0; i < 20 - fill; i++){
-            System.out.println("Computer's Final Turn");
-            computerPullThreads(i, intArray, playerArray, fill);
+          if(!mode.equals(BUG)){
+            for(int i = 0; i < upperBound - fill; i++){
+              System.out.println("Computer's Final Turn");
+              computerPullThreads(i, intArray, playerArray, fill);
+            }
           }
         }
-        isWinner = winCheck(playerArray, computerArray);
-      }
-
-      if (mode.equals(TEST)){
-        for(int i = 0; i < 20; i++){
-            System.out.println(i+1 + " Player Array: " + playerArray[i]+ " Computer Array: " + computerArray[i]);
+        if(!mode.equals(BUG)){
+          isWinner = winCheck(playerArray, computerArray);
         }
       }
     }
@@ -105,23 +102,22 @@ public class FindTheRedThread extends Game{
     }
 
     public void computerPullThreads(int pullNumber, int[] intArray, int[] computerArray, int fill){
-      int upperBound = 20;
       Random rand = new Random();
-      int randInt = rand.nextInt(upperBound);
-      while(!getInput.isValidThreadNum(randInt, upperBound) || intArray[randInt] == -1){
-        randInt = rand.nextInt(upperBound);
+      int random = rand.nextInt(upperBound);
+      while(!getInput.isValidThreadNum(random, upperBound) || intArray[random] == -1){
+        random = rand.nextInt(upperBound);
       }
-      System.out.println("Computer Pulled: " + randInt);
-      computerArray[pullNumber] = intArray[randInt];
+      System.out.println("Computer Pulled: " + random);
+      computerArray[pullNumber] = intArray[random];
       intArray[randInt] = -1;
       fill++;
     }
 
     public boolean winCheck(int[] playerArray, int[] computerArray){
       int winner = 0;
-      for(int i = 0; i < 20; i++){
+      for(int i = 0; i < upperBound; i++){
         if(playerArray[i] == 1){
-          System.out.println("Player Wins!");
+          System.out.println("Player Wins! The Red Thread Was in Slot " + (randInt - 1));
           incrementUserScore();
           return true;
         }
