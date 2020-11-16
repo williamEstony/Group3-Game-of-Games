@@ -8,7 +8,7 @@ public abstract class MenuObject {
     protected String name;
     protected String mode;
     
-    //Important because both a Game and a Quit object both need to mutate the Scoreboard
+    //Important because both Game and Quit objects need to mutate the Scoreboard
     //in different ways.
     protected static Scoreboard scoreboard = new Scoreboard();
 

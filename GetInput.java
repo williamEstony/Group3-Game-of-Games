@@ -28,6 +28,13 @@ public class GetInput {
         }
     }
 
+    public boolean isValidRange(int input, int maxRange) {
+        if(input > 0 && input <= maxRange) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isValidAOrBValue(String input, String a, String b) {
         if(input.equals(a) || input.equals(b)) {
             return true;
@@ -57,7 +64,7 @@ public class GetInput {
         return false;
     }
 
-    //Promp the user until they enter an integer
+    //Prompt the user until they enter an integer
     public int getIntegerInput(){
         String inputString = getInput();
 
