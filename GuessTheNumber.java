@@ -12,37 +12,39 @@ public class GuessTheNumber extends Game{
     }
     
     //Playing the game according to the selected mode
-    public void playGame(String mode){
+    public void playGame(String mode) {
         rangeNum = getRangeNum();
         numGuesses = input.getValidNumGuesses(rangeNum);
         secretNum = secretNum(rangeNum);
 
-        if (mode.equals(TEST) || mode.equals(BUG))
-         System.out.println("The secret number is " + secretNum);
+        if (mode.equals(TEST) || mode.equals(BUG)) {
+            System.out.println("The secret number is " + secretNum);
+        }
 
        //First bug that increments the number of remaining guesses
-        if(mode.equals(BUG))
+        if(mode.equals(BUG)) {
             numGuesses++;
+        }
 
         //check if the guesser still has guesses
-        while(numGuesses>0){
+        while(numGuesses > 0){
             int guess = guess(); 
-            if (guess==secretNum)
+            if (guess==secretNum) {
                 break;
+            }
             numGuesses--;
         }
 
-        if(numGuesses == 0){
+        if(numGuesses == 0) {
             System.out.println("Computer won!! The secret number was " + secretNum );
 
             //Second bug that increments the user's score when the computer wins
-            if(mode.equals(BUG))
+            if(mode.equals(BUG)) {
                 incrementUserScore();
-            else
+            } else {
                 incrementComputerScore();
-        }
-            
-        else{
+            }
+        } else{
             System.out.println("User won!! The secret number was " + secretNum );
 
             //Third bug that increments the computer's score when the user wins
@@ -59,7 +61,7 @@ public class GuessTheNumber extends Game{
         return input.getIntegerInput();  
     }
 
-    //The selectore selectes a number to be guessed
+    //The selector selects a number to be guessed
     private int secretNum(int rangeNum){
         Random rand = new Random(); 
         return rand.nextInt(rangeNum + 1); 

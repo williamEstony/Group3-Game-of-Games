@@ -1,7 +1,8 @@
 public abstract class MenuObject {
     
     private String name;
-    private String mode;
+    protected String mode;
+    
     private static Scoreboard scoreboard = new Scoreboard();
 
     public MenuObject(String name, String mode) {

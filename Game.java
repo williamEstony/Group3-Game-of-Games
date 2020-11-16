@@ -21,7 +21,7 @@ public abstract class Game extends MenuObject {
     public void execute() {
         if (super.getMode().equals(PLAYER) || super.getMode().equals(TEST) || super.getMode().equals(BUG)) {
             playGame(super.getMode());
-        }else {
+        } else {
             System.out.println("Invalid game mode detected");
         }
         

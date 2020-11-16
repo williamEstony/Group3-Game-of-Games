@@ -26,7 +26,7 @@ public class FindTheThimble extends Game{
         }
 
         if(mode.equals(BUG)) {
-            bestOfNum+=2;
+            bestOfNum += 2;
         }
 
         int userScore = 0;
@@ -54,7 +54,7 @@ public class FindTheThimble extends Game{
                 if(choice.equals(flips[flip])) {
                     computerScore++;
                     System.out.println("You lose game " + game);
-                }else {
+                } else {
                     userScore++;
                     System.out.println("You win game " + game);
                 }
@@ -62,7 +62,7 @@ public class FindTheThimble extends Game{
                 if(choice.equals(flips[flip])) {
                     userScore++;
                     System.out.println("You win game " + game);
-                }else {
+                } else {
                     computerScore++;
                     System.out.println("You lose game " + game);
                 }
@@ -74,7 +74,7 @@ public class FindTheThimble extends Game{
             if(computerScore > userScore) {
                 System.out.println("You Wins the Series!");
                 incrementUserScore();
-            }else {
+            } else {
                 System.out.println("Computer Wins the Series!");
                 incrementComputerScore();
             }
@@ -82,7 +82,7 @@ public class FindTheThimble extends Game{
             if(computerScore > userScore) {
                 System.out.println("Computer Wins the Series!");
                 incrementComputerScore();
-            }else {
+            } else {
                 System.out.println("You Win the Series!");
                 incrementUserScore();
             }

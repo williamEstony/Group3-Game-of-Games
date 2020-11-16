@@ -6,7 +6,7 @@ public class CoinFlip extends Game{
     private static final String HEADS = "H";
     private static final String TAILS = "T";
     private static final String[] flips = {HEADS, TAILS};
-    private static final Map<String, String> map = new HashMap<String, String>()
+    private Map<String, String> map = new HashMap<String, String>()
     {{ 
        put(HEADS, "heads"); 
        put(TAILS, "tails");
@@ -26,7 +26,7 @@ public class CoinFlip extends Game{
         }
 
         if(mode.equals(BUG)) {
-            bestOfNum+=2;
+            bestOfNum += 2;
         }
 
         int userScore = 0;
@@ -53,7 +53,7 @@ public class CoinFlip extends Game{
                 if(choice.equals(flips[flip])) {
                     computerScore++;
                     System.out.println("You lose game " + game);
-                }else {
+                } else {
                     userScore++;
                     System.out.println("You win game " + game);
                 }
@@ -61,7 +61,7 @@ public class CoinFlip extends Game{
                 if(choice.equals(flips[flip])) {
                     userScore++;
                     System.out.println("You win game " + game);
-                }else {
+                } else {
                     computerScore++;
                     System.out.println("You lose game " + game);
                 }
@@ -73,7 +73,7 @@ public class CoinFlip extends Game{
             if(computerScore > userScore) {
                 System.out.println("You Wins the Series!");
                 incrementUserScore();
-            }else {
+            } else {
                 System.out.println("Computer Wins the Series!");
                 incrementComputerScore();
             }
@@ -81,7 +81,7 @@ public class CoinFlip extends Game{
             if(computerScore > userScore) {
                 System.out.println("Computer Wins the Series!");
                 incrementComputerScore();
-            }else {
+            } else {
                 System.out.println("You Wins the Series!");
                 incrementUserScore();
             }

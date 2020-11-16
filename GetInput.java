@@ -1,13 +1,17 @@
 import java.util.Scanner;
 
 public class GetInput {
+
     private Scanner scan;
+
     public GetInput() {
         scan = new Scanner(System.in);
     }
+
     public String getInput() {
         return scan.nextLine();
     }
+
     public boolean isValidGameCode(String s) {
         if(Menu.getMenuObject(s) == null) {
             return false;
@@ -31,35 +35,20 @@ public class GetInput {
         return false;
     }
 
-    public boolean isValidThreadPull(String s) {
-      if(isInteger(s)) {
-          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= 10) {
-              return true;
-          } else {
-              return false;
-          }
-      } else {
-          return false;
-      }
+    public boolean isValidNumThreadPullsPerRound(int numThreadPulls, int threadBoxSize) {
+        if(numThreadPulls > 0 && numThreadPulls <= threadBoxSize / 2) {
+            return true;
+        }
+        return false;
     }
-    public boolean isValidThread(String s) {
-      if(isInteger(s)) {
-          if(Integer.parseInt(s) > 0 && Integer.parseInt(s) <= 20) {
-              return true;
-          } else {
-              return false;
-          }
-      } else {
-          return false;
-      }
+
+    public boolean isValidThreadPull(int threadIndex, int threadBoxSize) {
+        if(threadIndex > 0 && threadIndex <= threadBoxSize) {
+            return true;
+        }
+        return false;
     }
-    public boolean isValidThreadNum(int i, int upperBound) {
-          if(i > 0 && i <= upperBound) {
-              return true;
-          } else {
-              return false;
-          }
-      }
+    
     //Prompt the user until they enter a valid number of guesses
     public int getValidNumGuesses(int rangeNum){
         System.out.print("Enter the number of guesses: ");
