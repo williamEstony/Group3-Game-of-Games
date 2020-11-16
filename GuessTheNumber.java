@@ -17,8 +17,12 @@ public class GuessTheNumber extends Game{
         numGuesses = input.getValidNumGuesses(rangeNum);
         secretNum = secretNum(rangeNum);
 
-        if (mode.equals(TEST))
+        if (mode.equals(TEST) || mode.equals(BUG))
          System.out.println("The secret number is " + secretNum);
+
+       //First bug that increments the number of remaining guesses
+        if(mode.equals(BUG))
+            numGuesses++;
 
         //check if the guesser still has guesses
         while(numGuesses>0){
@@ -27,19 +31,25 @@ public class GuessTheNumber extends Game{
                 break;
             numGuesses--;
         }
-       
-        //The seeded bug that increments the number of remaining guesses
-        if(mode.equals(BUG))
-           numGuesses++;
 
         if(numGuesses == 0){
-            System.out.println("Computer(P2) won!! The secret number was " + secretNum );
-            incrementComputerScore();
+            System.out.println("Computer won!! The secret number was " + secretNum );
+
+            //Second bug that increments the user's score when the computer wins
+            if(mode.equals(BUG))
+                incrementUserScore();
+            else
+                incrementComputerScore();
         }
             
         else{
-            System.out.println("User(P1) won!! The secret number was " + secretNum );
-            incrementUserScore();
+            System.out.println("User won!! The secret number was " + secretNum );
+
+            //Third bug that increments the computer's score when the user wins
+            if(mode.equals(BUG))
+                incrementComputerScore();
+            else
+                incrementUserScore();
         }
     }
 
@@ -61,11 +71,3 @@ public class GuessTheNumber extends Game{
         return input.getIntegerInput();
     }
 }
-
-
-/* Questions to group 2
-Can I assume that the guesser is always the user?
-No need to confirm if the guess is in the range?
-Range is 0 to n? Should we reject n < 1
-How about even and odd values of n?
-*/
