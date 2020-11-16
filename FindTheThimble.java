@@ -13,7 +13,7 @@ public class FindTheThimble extends Game{
 
     private static final String LEFT = "L";
     private static final String RIGHT = "R";
-    private static final String[] flips = {LEFT, RIGHT};
+    private static final String[] hands = {LEFT, RIGHT};
 
     //Maps user input for left hand/right hand to their String literals
     private static final Map<String, String> map = new HashMap<String, String>()
@@ -58,9 +58,9 @@ public class FindTheThimble extends Game{
         //Keep playing individual find the thimble games until a player wins a majority of the 
         //games in the series.
         while(userScore < (bestOfNum + 1) / 2 && computerScore < (bestOfNum + 1) / 2) {
-            int flip = (int)Math.round(Math.random());
+            int hand = (int)Math.round(Math.random());
             if(mode.equals(TEST) || mode.equals(BUG)) {
-                System.out.println("The thimble is in my " + map.get(flips[flip]));
+                System.out.println("The thimble is in my " + map.get(hands[hand]));
             }
 
             System.out.println("Which hand am I hiding the thimble in?");
@@ -73,9 +73,9 @@ public class FindTheThimble extends Game{
                 choice = getInput.getInput();
             }
 
-            System.out.println("The thimble was in my " + map.get(flips[flip]));
+            System.out.println("The thimble was in my " + map.get(hands[hand]));
             if(mode.equals(BUG)) {
-                if(choice.equals(flips[flip])) {
+                if(choice.equals(hands[hand])) {
                     computerScore++;
                     System.out.println("You lose game " + game);
                 } else {
@@ -83,7 +83,7 @@ public class FindTheThimble extends Game{
                     System.out.println("You win game " + game);
                 }
             } else {
-                if(choice.equals(flips[flip])) {
+                if(choice.equals(hands[hand])) {
                     userScore++;
                     System.out.println("You win game " + game);
                 } else {
