@@ -1,5 +1,7 @@
 import java.util.*;
 
+
+//Class for playing Guess the Number
 public class GuessTheNumber extends Game{
     private int rangeNum;
     private int numGuesses;
@@ -20,12 +22,12 @@ public class GuessTheNumber extends Game{
         if (mode.equals(TEST) || mode.equals(BUG))
          System.out.println("The secret number is " + secretNum);
 
-       //First bug that increments the number of remaining guesses
+       //First bug that wrongfully increments the number of guesses
         if(mode.equals(BUG))
             numGuesses++;
 
-        //check if the guesser still has guesses
-        while(numGuesses>0){
+        //Guess as many times as allowed
+        while(numGuesses > 0){
             int guess = guess(); 
             if (guess==secretNum)
                 break;
@@ -53,13 +55,13 @@ public class GuessTheNumber extends Game{
         }
     }
 
-    //The guesser enters their guess
+    //Guetting a gess from the user
     private int guess(){
         System.out.print("Enter your guess: ");
         return input.getIntegerInput();  
     }
 
-    //The selectore selectes a number to be guessed
+    //Selecting the secret number
     private int secretNum(int rangeNum){
         Random rand = new Random(); 
         return rand.nextInt(rangeNum + 1); 

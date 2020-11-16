@@ -20,8 +20,8 @@ Step-by-step directions indicating how the code for your program (variations) ca
 
 ## Meeting Notes
 
-* Preliminary Meeting from 1 - 2:30 PM on Friday, November 13, 2020 (Whole Group)
+* Preliminary Meeting from 1 - 2:30 PM on Friday, November 13, 2020 (Whole Group)  NOTES ALREADY WRITTEN
 * Git tutorial from 4 - 4:30 PM on Friday, November 13, 2020 (Will and Rashed)
-* Second meeting with group from 5 - 6 PM on Saturday, November 14, 2020 (Whole Group)
-* Third team meeting with group from 1 - 2 PM on Sunday, November 15, 2020 (Whole Group)
-* Fourth team meeting with group from 8 - 9 PM on Sunday, November 15, 2020 (Whole Group)
+* Second meeting with group from 5 - 6 PM on Saturday, November 14, 2020 (Whole Group)  NOTES ALREADY WRITTEN
+* Third team meeting with group from 1 - 2 PM on Sunday, November 15, 2020 (Whole Group)  NOTES ALREADY WRITTEN
+* Fourth team meeting with group from 8 - 9 PM on Sunday, November 15, 2020 (Whole Group) NOTES ALREADY WRITTEN

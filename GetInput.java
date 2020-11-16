@@ -60,6 +60,7 @@ public class GetInput {
               return false;
           }
       }
+      
     //Prompt the user until they enter a valid number of guesses
     public int getValidNumGuesses(int rangeNum){
         System.out.print("Enter the number of guesses: ");
